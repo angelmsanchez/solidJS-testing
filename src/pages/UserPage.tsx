@@ -10,6 +10,7 @@ const UserPage: Component = () => {
   const goTo = () => {
     navigate('/');
   };
+  
   return (
     <div>
       USER PAGE

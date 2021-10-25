@@ -6,6 +6,7 @@ import {
   onCleanup,
 } from "solid-js";
 
+import './HomePage.scss';
 import logo from "../logo.svg";
 import Basic from '../components/Basic';
 
@@ -21,7 +22,7 @@ const HomePage: Component = () => {
   createEffect(() => console.log("The latest count is", count()));
 
   return (
-    <div>
+    <div className="home-page-container">
       <img src={logo} alt="logo" />
       <h5>{fullName}</h5>
       <h5>Count</h5>
