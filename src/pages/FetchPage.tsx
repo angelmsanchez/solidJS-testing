@@ -1,22 +1,23 @@
 import {
   Component,
-  createEffect,
-  createMemo,
-  createSignal,
-  onCleanup,
+  createResource,
 } from "solid-js";
+
+const fetchData = () => {
+  return fetch('https://rickAndmortyapi.com/api/character')
+    .then(res => res.json())
+    .then(response => {
+      return response.results;
+    });
+};
 
 
 const FetchPage: Component = () => {
-  const [results, setResults] = createSignal([]);
-
-  fetch('https://rickAndmortyapi.com/api/character')
-    .then(res => res.json())
-    .then(response => setResults(response.results));
+  const [data, { mutate, refetch }] = createResource(fetchData, { initialValue: [] });
 
   return (
     <div className="fetch-page-container">
-      {results().map(result => (
+      {data().map(result => (
         <div>
           <h1>{result.name}</h1>
           <img src={result.image} />
